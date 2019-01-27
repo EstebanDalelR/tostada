@@ -8,11 +8,17 @@ class App extends Component {
     super(props);
     this.state = { open: false }
   }
-  
-  showToast(){
-    this.setState({open: true})
+
+  showToast() {
+    this.setState(
+      { open: true },
+      () =>
+        setTimeout(() =>
+          this.setState({ open: false }), 5000
+        )
+    )
   }
-  
+
   render() {
     return (
       <div className="App">
