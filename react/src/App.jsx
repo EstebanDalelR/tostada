@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import Tostada from './Tostada'
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { open: false }
+  }
+  
+  showToast(){
+    this.setState({open: true})
+  }
+  
   render() {
     return (
       <div className="App">
         <h1>Tostada</h1>
         <main>
           <section className="buttons">
-            <button onclick="showToast()">Show toast</button>
-            <button onclick="showToastWithStyle()">Show toast with <i>style</i></button>
+            <button onClick={() => this.showToast()}>Show toast</button>
+            <button onClick={() => this.showToast()}>Show toast with <i>style</i></button>
           </section>
 
           <section className="lorem">
@@ -57,7 +67,7 @@ class App extends Component {
             </article>
           </section>
         </main>
-
+        {this.state.open ? <Tostada toastText="Hola" /> : null}
       </div>
     );
   }
