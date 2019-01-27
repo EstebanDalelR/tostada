@@ -6,16 +6,20 @@ import Tostada from './Tostada'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: false }
+    this.state = { open: false, toastText: "" }
   }
 
   showToast() {
+    const messages = ['Calao', 'Mogolla', 'Roscón', 'Liberal']
     this.setState(
       { open: true },
       () =>
         setTimeout(() =>
           this.setState({ open: false }), 5000
         )
+    )
+    this.setState(
+      { toastText: messages[Math.floor(Math.random() * messages.length)] }
     )
   }
 
@@ -26,7 +30,6 @@ class App extends Component {
         <main>
           <section className="buttons">
             <button onClick={() => this.showToast()}>Show toast</button>
-            <button onClick={() => this.showToast()}>Show toast with <i>style</i></button>
           </section>
 
           <section className="lorem">
@@ -73,7 +76,7 @@ class App extends Component {
             </article>
           </section>
         </main>
-        {this.state.open ? <Tostada toastText="Hola" /> : null}
+        {this.state.open ? <Tostada toastText={this.state.toastText} /> : null}
       </div>
     );
   }
